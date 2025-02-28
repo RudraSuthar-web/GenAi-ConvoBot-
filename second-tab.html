@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConvoBot Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0078ff;
+            padding: 15px;
+            color: white;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin: 0 10px;
+        }
+        .nav-links a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+        .btn {
+            background-color: white;
+            color: #0078ff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .chat-box {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px 15px;
+            background: #0078ff;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .message .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #0078ff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .message.user .avatar {
+            background: #4CAF50;
+        }
+        .message-content {
+            background: #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-icon">💬</span>
+                    ConvoBot Chat
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="btn">Back to Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="chat-container">
+        <div class="chat-box">
+            <div class="messages" id="messages">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("userInput");
+            let message = input.value.trim();
+            if (message !== "") {
+                let chatBox = document.getElementById("messages");
+                let userMessage = document.createElement("div");
+                userMessage.classList.add("message", "user");
+                userMessage.innerHTML = `<div class="avatar">U</div><div class="message-content">${message}</div>`;
+                chatBox.appendChild(userMessage);
+                input.value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
